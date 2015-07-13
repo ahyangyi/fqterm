@@ -12,13 +12,17 @@ set(fq_SRCS
   fqwcwidth.cpp
 )
 
-qt4_automoc(${fqterm_utilities_SRCS})
+if(USE_QT5)
+  set(CMAKE_AUTOMOC ON)
+  find_package(Qt5Core REQUIRED)
+  find_package(Qt5Widgets REQUIRED)
+  find_package(Qt5Network REQUIRED)
+  target_link_libraries(fqterm_utilities Qt5::Core Qt5::Widgets Qt5::Network)
+else(USE_QT5)
+  qt4_automoc(${fqterm_utilities_SRCS})
+endif(USE_QT5)
 
 include_directories(
-  ${QT_INCLUDE_DIR}
-  ${QT_QTCORE_INCLUDE_DIR}
-  ${QT_QTGUI_INCLUDE_DIR}
-  ${QT_QTNETWORK_INCLUDE_DIR}
   ${CMAKE_CURRENT_SOURCE_DIR}/../common
   ${CMAKE_CURRENT_BINARY_DIR}
 )
