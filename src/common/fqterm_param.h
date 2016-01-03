@@ -21,6 +21,7 @@
 #ifndef FQTERM_PARAM_H
 #define FQTERM_PARAM_H
 
+#include <QObject>
 #include <QString>
 #include <QColor>
 
